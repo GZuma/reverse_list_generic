@@ -38,7 +38,11 @@ public class Main {
 //        System.out.println(myReverse(dubList));
 //        System.out.println(dubList);
 
-        System.out.println(perfect(10));
+        perfect(24);
+        perfect(1000);
+        for (int i = 0; i <= 1000; i++) {
+            perfect(i);
+        }
     }
 
     public static <T> List myReverse(List<T> originalList) {
@@ -54,12 +58,14 @@ public class Main {
 
     }
 
-    public static List<Integer> perfect(int num) {
-
-        List<Integer> perfectList = IntStream.iterate(1, n -> n + 1).filter(n -> n % num == 0).limit(num).boxed().collect(Collectors.toList());
-
-        return perfectList;
+    public static void perfect(int num) {
+        int perfectList = IntStream.range(1,num).filter(n -> num % n == 0).sum();
 
 
+        if(perfectList == num){
+            System.out.println("The sum of all the factors of " + num + " minus the number " + num + " MAKES it a perfect number");
+        }
     }
 }
+
+//limit(num).boxed().collect(Collectors.toList());
